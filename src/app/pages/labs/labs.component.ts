@@ -10,10 +10,10 @@ import { CommonModule } from '@angular/common';
 })
 export class LabsComponent {
   title = 'Mercadito';
-  tasks = [ 'Inicio',
+  tasks = signal([ 'Inicio',
   'Curso',
   'Proyectos',
-  'Final'];
+  'Final']);
 
  name= signal('Fabian');
  age = 18;
@@ -26,8 +26,11 @@ export class LabsComponent {
  clickHandler(){
   alert("Holitaass")
  }
+
  changerHandler(event: Event){
-    console.log(event);
+  const input = event.target as HTMLInputElement;
+  const newValue = input.value;
+  this.name.set(newValue);
  }
  
 
