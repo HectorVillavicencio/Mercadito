@@ -29,10 +29,18 @@ export class HomeComponent {
     }
   ]);
 
+  newTaskCtrl = new FormControl('',{ 
+    nonNullable: true,
+    validators: [
+      Validators.required
+    ]
+    })
+
   changeHandler(){
     if(this.newTaskCtrl.valid){
       const value = this.newTaskCtrl.value
       this.addTask(value);
+      this.newTaskCtrl.setValue('');
     }
   }
 
@@ -63,11 +71,4 @@ export class HomeComponent {
     })
   }
 
-  
-  newTaskCtrl = new FormControl('',{ 
-    nonNullable: true,
-    validators: [
-      Validators.required
-    ]
-    })
 }
