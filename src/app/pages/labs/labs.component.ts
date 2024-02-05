@@ -17,11 +17,11 @@ export class LabsComponent {
 
  name= signal('Fabian');
  age = 18;
- persona = {
-  edad: 25,
+ persona = signal({
+  edad: 17,
   nombre: 'Julian',
   imagen: 'https://img.freepik.com/foto-gratis/lindo-bebe-erizo-closeup-sobre-musgo-fondo-negro_488145-1549.jpg?w=996&t=st=1706327494~exp=1706328094~hmac=147657ca7a47ebe395784461300fec25be64a726ab41568e49538479fe6dbb31'
- }
+ });
 
  clickHandler(){
   alert("Holitaass")
@@ -31,6 +31,17 @@ export class LabsComponent {
   const input = event.target as HTMLInputElement;
   const newValue = input.value;
   this.name.set(newValue);
+ }
+
+ changeAge(event: Event){
+  const input = event.target as HTMLInputElement;
+  const newValue = input.value;
+  this.persona.update(prevState => {
+    return {
+      ...prevState,
+      edad: parseInt(newValue, 10)
+    }
+  });
  }
  
 

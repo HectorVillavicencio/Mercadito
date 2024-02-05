@@ -9,16 +9,16 @@
   <hr/>
   <h2>{{'Hola '.repeat(4)}}</h2>
   <p>La suma de 3 + 3 es {{3+3}}</p>
-  <p>Hola soy {{persona.nombre}} y mi edad es de {{persona.edad}}</p>
-  <p>Soy {{persona.nombre}}</p>
+  <p>Hola soy {{persona().nombre}} y mi edad es de {{persona().edad}}</p>
+  <p>Soy {{persona().nombre}}</p>
   <hr/>
-  <img [src]="persona.imagen" alt="">
-  <input type="number" [value]="persona.edad">
+  <img [src]="persona().imagen" alt="">
+  
   <hr/>
   <button (click)="clickHandler()">Click me</button>
   <button (dblclick)="clickHandler()">Double me</button>
   <p>(change)</p>
-  <input type="number" [value]="persona.edad" (change)="changerHandler($event)">
+  
   <hr/>
   <h1>Signals</h1>
   <input type="text" [value]="name()" (change)="changerHandler($event)">
@@ -29,6 +29,14 @@
      {{i}} {{task}}
     </li>
   </ul>
+  <hr/> 
+  <input type="number" [value]="persona().edad" (change)="changeAge($event)">
+  <div *ngIf="persona().nombre === 'Julian' && persona().edad >= 18; else elseBlock">
+    Soy Fabian y soy mayor a 18 años
+  </div>
+  <ng-template #elseBlock>
+    Soy Fabian y tengo menos de 18 años
+  </ng-template>
 
 
 </div>
