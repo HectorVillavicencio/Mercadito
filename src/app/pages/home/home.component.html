@@ -62,11 +62,12 @@
         <!-- This should be `0 items left` by default -->
         <span class="todo-count" >
           <strong> {{tasks().length}} </strong>
-          {{tasks().length !== 1 ? "items" : "item"}}
+          <span *ngIf="tasks().length === 1; else elseBlock"> item </span>
+          <ng-template  #elseBlock>
+            items
+          </ng-template>
         </span>
-        <ng-template  #elseBlock>
-          item
-        </ng-template>
+
         <!-- Remove this if you don't implement routing -->
         <ul class="filters">
           <li>
