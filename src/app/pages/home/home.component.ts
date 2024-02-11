@@ -37,12 +37,17 @@ export class HomeComponent {
     })
 
   changeHandler(){
-    if(this.newTaskCtrl.valid){
-      const value = this.newTaskCtrl.value
+    if(this.newTaskCtrl.valid && this.isNotOnlySpace(this.newTaskCtrl)){
+      const value = this.newTaskCtrl.value.trim()
       this.addTask(value);
       this.newTaskCtrl.setValue('');
     }
   }
+
+  isNotOnlySpace(form: FormControl){
+    return form.value.trim() !== ''
+  }
+
 
   addTask(title: string){
     const newTask = {
@@ -70,5 +75,4 @@ export class HomeComponent {
       })
     })
   }
-
 }
